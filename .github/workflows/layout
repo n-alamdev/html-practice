@@ -1,0 +1,346 @@
+if ( ! function_exists( 'wpdocs_pingbackurl_example' ) ) {
+	function wpdocs_pingbackurl_example() {
+		if ( is_singular() && pings_open() ) {
+			echo '<link rel="pingback" href="' . esc_url( get_bloginfo( 'pingback_url' ) ) . '">';
+		}
+	}
+}
+add_action( 'wp_head', 'wpdocs_pingbackurl_example' );
+
+Skip to content
+ThemeShaper
+About
+Contact
+Twitter
+Search for:
+Search …
+SEARCH
+Creating a WordPress Theme HTML Structure
+Update: We’ve created a second edition of this article, with updated code samples and coverage of the latest theme development techniques. Check it out at Creating a WordPress Theme HTML Structure. It’s part of The ThemeShaper WordPress Theme Tutorial: 2nd Edition.
+
+Now we’re starting to get into the real meat of WordPress Theme development: coding the HTML structure.
+
+The Goals of Any HTML Structure
+When coding a web site you should have 2 goals in mind: lean code and meaningful code. That is, using as little markup (HTML tags) as possible and making sure that the markup is meaningful by using semantic class and ID names that refer to their content, not how they “look” (class=”widget-area” instead of class=”sidebar-left”).
+
+Now, when coding a WordPress Theme (or any template for any Content Management System) a balance is going to have to be struck between lean markup, with very little structure, and what’s called Divitis; including too many unnecessary div elements in your code. In other words, too much meaningless structure.
+
+You’ve probably seen the div tag before if you’ve looked at the code for a website or any WordPress Theme. Think of them as containers for HTML code—containers that are very handy for manipulating HTML code with CSS. Obviously we’re going to have some. But we don’t want too many or ones without meaning. And we want enough structure—using the div tag—that we can reuse our code for multiple blog and site layouts. We want to code something we can come back to and use again.
+
+
+The HTML Structure for Your WordPress Theme
+Let’s take a look at the HTML structure we’ll be using for the body of our WordPress Theme.
+
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+<html>
+<head>
+</head>
+ 
+<body>
+<div id="wrapper" class="hfeed">
+    <div id="header">
+        <div id="masthead">
+ 
+            <div id="branding">
+            </div><!-- #branding -->
+ 
+            <div id="access">
+            </div><!-- #access -->
+ 
+        </div><!-- #masthead -->
+    </div><!-- #header -->
+ 
+    <div id="main">
+        <div id="container">
+ 
+            <div id="content">
+            </div><!-- #content -->
+ 
+        </div><!-- #container -->
+ 
+        <div id="primary" class="widget-area">
+        </div><!-- #primary .widget-area -->
+ 
+        <div id="secondary" class="widget-area">
+        </div><!-- #secondary -->
+    </div><!-- #main -->
+ 
+    <div id="footer">
+        <div id="colophon">
+ 
+            <div id="site-info">
+            </div><!-- #site-info -->
+ 
+        </div><!-- #colophon -->
+    </div><!-- #footer -->
+</div><!-- #wrapper -->
+</body>
+</html>
+Paste this code into your text editor and save it somewhere handy. We’ll be using it later when we build the file structure for our WordPress Theme. But before we do that, there are a few things we’ll want to take a look at here.
+
+A Quick Tour Through Your WordPress Theme HTML
+Firstly, the class attribute on the wrapper, hfeed. hfeed is part of the hatom Microformat schema. In plain English, this means that adding that hfeed class to our page tells any machines reading our site (like search-engine bots or some other service) that our site publishes syndicated content, like blog posts. You’ll be seeing a lot of class names like this as we go along.
+
+Looking at the div structure for the header and footer you’ve probably noticed what I’ll call an inner-outer structure. This is one of the few places (hopefully) that our structure could potentially be accused of Divitis. Potentially. Borrowing class names from the publishing world (WordPress makes us content publishers, right), I’ve tried to add some meaning to the markup that will be resting in these containers. Markup that we’ll be adding in this tutorial series and markup that will may be added in the future. Plus, to accomplish certain layouts, we’ll need this markup structure. It’s better to add it now and do it right.
+
+In the main area of our HTML you’ll notice that we have 2 widget areas that come after our content area. And you may also have noticed that our content rests inside a container div. These points are key. This not only let’s our main content come before the sidebars in the eyes of search engines (and screen readers) but by using a CSS technique involving negative margins we can make this into a 1, 2, or 3 column theme with only a few lines of CSS.
+
+This HTML structure is going to future-proof your WordPress Theme and give you the opportunity to do powerful stuff with CSS. It’s a good one.
+
+How To Create a WordPress Theme
+This post is part of a WordPress Themes Tutorial that will show you how to create a powerful WordPress Theme from scratch. Read it from the beginning and code yourself up something awesome.
+
+WordPress Theme Tutorial Introduction
+Theme Development Tools
+Creating a Theme HTML Structure
+Template and Directory Structure
+The Header Template
+The Index Template
+The Single Post, Post Attachment, & 404 Templates
+The Comments Template
+The Search Template & The Page Template
+The Archive, Author, Category & Tags Template
+The Sidebar Template
+Reset-Rebuild Theme CSS & Define Your Layouts
+Share this:
+TwitterFacebookMore
+
+Related
+Creating a WordPress Theme HTML Structure
+October 25, 2012
+In "Theme Development"
+How To Create a WordPress Theme: The Ultimate WordPress Theme Tutorial
+June 22, 2009
+In "Theme Tips"
+A WordPress Theme Structure with Meaning and Possibility
+April 13, 2008
+In "Theme Development"
+by Ian Stewart
+Posted onJune 24, 2009
+CategoriesTheme Tips
+35 thoughts on “Creating a WordPress Theme HTML Structure”
+Stuartsays:
+June 24, 2009 at 7:31 am
+Thanks Ian. Excellent tips.
+Your series is shaping up nicely 🙂 (or theme-shaping up nicely)
+You’ve reminded me to try and be leaner and meaner with my own markup and the hatom tip was new to me.
+The expertise you’re sharing is much appreciated and I’m looking forward to the next instalment.
+
+Ridgelysays:
+June 24, 2009 at 7:41 am
+Ian, this is great, thank you. And thank you for directing me to sixrevisions for local wordpress setup. I had xampp already but I couldnt get anyone to show me how to set up the mysql db on localhost in a way that made sense before yesterday. So now I have what I should’ve had from the start which is a local wordpress test site. 1 tutorial in and this series is already priceless.
+
+Thanks again!
+
+Chris Dornansays:
+June 24, 2009 at 8:08 am
+Elegant, clear and concise. Very much appreciated.
+
+Brock Foremansays:
+June 24, 2009 at 8:09 am
+Great stuff.
+
+Pingback: links for 2009-06-24 | Links | WereWP
+Patsays:
+June 24, 2009 at 10:36 am
+Hey Ian,
+Great series so far. Couple quick things:
+
+1) Thanks for the tip on the hfeed class. I wasn’t sure what that was for until now and haven’t included it in my latest work. I will be sure to go back where I can to add it and include it in future work.
+
+2) I’m still not sure why you are including the #container div, but I am sure you’ll explain it soon. I just don’t yet see that it’s necessary.
+
+Once again, great start to a very promising series.
+
+Ian Stewartsays:
+June 24, 2009 at 11:03 am
+If you have the #container div you can create unbreakable layouts with 1 or 2 of the widget areas on the left of the layout—without changing any of the markup. Without it, not so unbreakable.
+
+Jim Bertuccisays:
+June 24, 2009 at 1:47 pm
+Ian, You said
+
+but by using a CSS technique involving negative margins we can make this into a 1, 2, or 3 column theme with only a few lines of CSS.
+
+Targeting a 3-column layout, does the HTML and our CSS we will provide allow for sidebar placement where ever we want them?
+
+JIM
+
+Ian Stewartsays:
+June 24, 2009 at 1:50 pm
+Essentially, yeah. I wouldn’t have it any other way. 🙂 But we won’t be running through any CSS until the last tutorial.
+
+Adam W. Warnersays:
+June 24, 2009 at 2:50 pm
+Hi Ian, great start here. I’d like to make one suggestion if I may? In the interest of those users who may be looking at your HTML structure above and are having trouble visualizing, maybe a graphic representation of these divs would be a helpful addition?
+
+Just a thought.
+
+Pingback: Creating a WordPress Theme HTML Structure | New WP Themes - WordPress News
+Pingback: 创建 WordPress 主题 HTML 结构 | 精品博客
+Personal Growth andsays:
+June 30, 2009 at 2:30 pm
+I have been browsing throught your site. I find it very informative and very helpful. I just started to learn html, very helpful post.
+thank you 🙂
+
+Pingback: How To Create a WordPress Theme – a tutorial series by Ian Stewart | Cozmoslabs
+Sandy Sainisays:
+July 8, 2009 at 5:26 am
+“You have a band of thoroughly stuff here.This post is brilliant. You have a real good knowledge about this subject. The way you wrote very nice.
+
+Raymond Seldasays:
+July 9, 2009 at 2:13 am
+Markup is really very important and you explained it really well Ian. The markup I used for Archetype is based from LayoutGala’s 40 layouts. But I only chose to write CSS for I think 10 different layouts. I noticed that we have more or less the similar structure. Looking forward to reading every tutorial in this series. Thanks a bunch.
+
+Pingback: Creating a WordPress Theme HTML Structure | ScriptRemix.com Scripts
+katinka - all consideringsays:
+July 14, 2009 at 11:42 am
+Just wanted to come by and thank you for making and maintaining this essential plugin. I’ve featured it on my list of plugins I use here: http://www.squidoo.com/wordpress-plugins-thanks
+
+nitendrasays:
+August 1, 2009 at 9:27 am
+Amazing , thanks for your such excellent tips.
+
+Louis Leosays:
+August 4, 2009 at 9:21 pm
+I think this is exactly what I need! Thanks! And I’m glad I came back to check on the website! 🙂
+
+Ashfamesays:
+August 18, 2009 at 2:00 am
+Hey Ian!
+
+Are there any restrictions on the markup we chose? Like certain DIVs must be named so that functionality doesn’t break. We do have such restrictions in bbPress & I don’t know about WordPress. Also can you please highlight more (if there are any) things like “hfeed”?
+
+Thanks!
+
+Stefan Knorrsays:
+November 21, 2009 at 12:39 pm
+I’m new to WordPress and so glad I came across your tutorial – so much goodness here! Love the succint, relevant and passionate explanations. Learning tons, too much to enumerate, and wished I’d come across this earlier…
+
+Thanks Ian!
+
+Pingback: 创建 WordPress 主题 HTML 结构 » Liblog 橘聚博客
+amolesays:
+January 27, 2010 at 9:12 am
+hmmm, Its a great tutorial for wordpress beginners
+
+MadtownLemssays:
+January 29, 2010 at 10:49 am
+Great beginner tutorial. I’m looking for some info on adding Theme Options to a theme. Such as:
+Choose which pages you want displayed in these tabs. (instead of just using all of them)
+Choose
+I can do this with a ton of custom php and html, but there’s got to be a better way, right? A plugin, framework, -something-? I tried Thematic, and, while cool, it gave me 13 widgetizable areas, but zero theme options.
+Thanks!
+
+Pingback: How To Create a WordPress Theme: The Ultimate WordPress Theme Tutorial | Astagram Studios- A Creative Studio- Official Blog
+Magdasays:
+March 31, 2010 at 3:45 pm
+Great set of tutorials. Better detail than most others. I appreciate it.
+
+Tonysays:
+April 1, 2010 at 6:00 pm
+Thanks for this detailed tutorial Ian. I’ve been itching to design my own themes for awhile now, but couldn’t find any good documentation! Look forward to reading the rest and improving my skills.
+
+Williamsays:
+April 3, 2010 at 9:46 pm
+Paste this code into your text editor and save it somewhere handy.
+
+Is this supposed to paste the line number for every line as well?
+
+Tonysays:
+April 3, 2010 at 10:00 pm
+william,
+
+it copied the line numbers for me as well. I just deleted them out one by one because my editor already has line numbers. I think if you just copy each line of code by itself, it won’t copy the numbers.
+
+Abhijit V. Chaoresays:
+June 18, 2010 at 3:07 am
+Ian, you mentioned negative margin values for structuring the layout. I guess it is useful to bring the text content up and images down the page while viewed after disabling CSS. It is useful to make search engine crawlers, who crawl our page from top to bottom, to crawl our content first.
+
+Aafrinsays:
+July 17, 2010 at 11:25 pm
+One of the best tutorials I ever read! Well explained with proper codes Great job dude!
+
+wulinuxsays:
+August 23, 2010 at 8:00 pm
+Markup is really very important and you explained it really well Ian. The markup I used for Archetype is based from LayoutGala’s 40 layouts. But I only chose to write CSS for I think 10 different layouts. I noticed that we have more or less the similar structure. Looking forward to reading every tutorial in this series. Thanks a bunch.
+
+Pingback: How to create a WordPress theme: A WordPress theme tutorial
+Garysays:
+November 19, 2010 at 2:59 pm
+Thank you, Ian, for a truly understandable, succinct, tutorial. This tutorial has been more helpful to me than anything I have read in books or on the interwebs. And thank you, as well, for making it so freely available.
+
+Comments are closed.
+
+Post navigation
+PREVIOUS
+Previous post:WordPress Theme Development Tools
+NEXT
+Next post:WordPress Theme Template & Directory Structure
+TOPICS
+Asides
+Community
+CSS Tips
+Design
+Education
+Ideas
+Site News
+Theme Development
+Theme Launches
+Theme Team
+Theme Testing
+Theme Tips
+Themes
+Tools
+Uncategorized
+SEARCH
+Search for:
+Search …
+SEARCH
+ABOUT
+This is ThemeShaper, a WordPress-powered blog and home to the Automattic Theme Division. We shape beautiful and customizable themes that make the world a better place.
+
+Theme: Twenty Sixteen. ThemeShaper Blog at WordPress.com.Automattic
